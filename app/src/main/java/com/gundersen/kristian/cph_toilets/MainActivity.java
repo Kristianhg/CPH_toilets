@@ -5,7 +5,7 @@ package com.gundersen.kristian.cph_toilets;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import com.google.maps.android.geojson.GeoJsonLayer;
+
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,9 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.maps.android.geojson.GeoJsonLayer;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -106,9 +106,10 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(JSONObject geoJson) {
 
-            jsonOutput.setText(geoJson.toString());
+            //jsonOutput.setText(geoJson.toString());
 
-            //GeoJsonLayer layer = new GeoJsonLayer(getMap(), geoJsonData);
+            GeoJsonLayer layer = new GeoJsonLayer(googleMap, geoJson);
+            layer.addLayerToMap();
 
         }
 
