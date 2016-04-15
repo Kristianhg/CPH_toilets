@@ -7,12 +7,18 @@ import android.app.ProgressDialog;
 import android.content.Context;
 
 import android.os.AsyncTask;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.geojson.GeoJsonLayer;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -25,12 +31,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private TextView jsonOutput;
     private Button btnFetchJson;
     private JSONObject geoJson;
-    private GoogleMap googleMap;
+    private GoogleMap globalGoogleMap;
+    private SupportMapFragment supportMapFragment;
 
 
 
@@ -40,10 +47,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         jsonOutput = (TextView) findViewById(R.id.txtJsonOut);
-        googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.googleMap)).getMap();
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.getMinZoomLevel();
+        supportMapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap));
+        supportMapFragment.getMapAsync(this);
 
+        //googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.googleMap)).getMap();
+        //googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        //googleMap.getMinZoomLevel();
 
         btnFetchJson = (Button) findViewById(R.id.btnFetchJson);
         btnFetchJson.setOnClickListener(new View.OnClickListener() {
@@ -52,9 +61,17 @@ public class MainActivity extends AppCompatActivity {
                 new fetchJsonAsync().execute();
             }
         });
+    }
 
+
+    public void onMapReady (GoogleMap googleMap) {
+        globalGoogleMap = googleMap;
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        googleMap.getMinZoomLevel();
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(55.6815890,12.5290920), 12.0f));
 
     }
+
 
     public class fetchJsonAsync extends AsyncTask<Void, String, JSONObject> {
 
@@ -109,9 +126,16 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(JSONObject geoJson) {
 
             //jsonOutput.setText(geoJson.toString());
+            if (globalGoogleMap != null) {
 
-            GeoJsonLayer layer = new GeoJsonLayer(googleMap, geoJson);
-            layer.addLayerToMap();
+                GeoJsonLayer layer = new GeoJsonLayer(globalGoogleMap, geoJson);
+                layer.addLayerToMap();
+            }
+            else {
+                Toast toast =new Toast(getApplicationContext());
+                toast.setText("Map not ready yet");
+                toast.show();
+            }
 
         }
 
