@@ -68,6 +68,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         globalGoogleMap = googleMap;
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         googleMap.getMinZoomLevel();
+        ////// NEXT LINE IS A PLACEHOLDER. It should be generated from the user´s position. the last arg is zoom level.
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(55.6815890,12.5290920), 12.0f));
 
     }
