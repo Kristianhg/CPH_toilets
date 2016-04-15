@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
             jsonOutput.setText(geoJson.toString());
 
-            //GeoJsonLayer layer = new GeoJsonLayer(getMap(), geoJsonData);// Kristian is playing with this
+            //GeoJsonLayer layer = new GeoJsonLayer(getMap(), geoJsonData);
 
         }
 
