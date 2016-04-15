@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         jsonOutput = (TextView) findViewById(R.id.txtJsonOut);
         googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.googleMap)).getMap();
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        googleMap.getMinZoomLevel();
 
 
         btnFetchJson = (Button) findViewById(R.id.btnFetchJson);
