@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
         */
 
         @Override
-        //protected String doInBackground(Void... args) {
         protected JSONObject doInBackground(Void... args) {
 
             StringBuilder result = new StringBuilder();
@@ -94,12 +93,10 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-            // return result.toString();
             return geoJson;
         }
 
         @Override
-        // protected void onPostExecute(String result) {
         protected void onPostExecute(JSONObject geoJson) {
 
             jsonOutput.setText(geoJson.toString());
