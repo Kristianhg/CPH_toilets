@@ -49,9 +49,10 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         jsonOutput = (TextView) findViewById(R.id.txtJsonOut);
         supportMapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap));
         supportMapFragment.getMapAsync(this);
-        btnFetchJson = (Button) findViewById(R.id.btnFetchJson);
+
 
         /*
+        btnFetchJson = (Button) findViewById(R.id.btnFetchJson);
         btnFetchJson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
