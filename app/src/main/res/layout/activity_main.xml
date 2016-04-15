@@ -25,4 +25,12 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
-    </RelativeLayout>
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:id="@+id/googleMap"
+        android:layout_below="@+id/txtJsonOut"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

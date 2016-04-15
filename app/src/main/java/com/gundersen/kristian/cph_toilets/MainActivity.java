@@ -12,6 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView jsonOutput;
     private Button btnFetchJson;
     private JSONObject geoJson;
+    private GoogleMap googleMap;
 
 
     @Override
@@ -34,9 +38,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         jsonOutput = (TextView) findViewById(R.id.txtJsonOut);
+        googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.googleMap)).getMap();
 
 
-        btnFetchJson = (Button) findViewById(R.id.btnFetchJson);
+        btnFetchJson = (Button) findViewById(R.id.btnFetchJson)
         btnFetchJson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
