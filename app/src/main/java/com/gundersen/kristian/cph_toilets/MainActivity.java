@@ -5,6 +5,7 @@ package com.gundersen.kristian.cph_toilets;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import com.google.maps.android.geojson.GeoJsonLayer;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private GoogleMap googleMap;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.googleMap)).getMap();
 
 
-        btnFetchJson = (Button) findViewById(R.id.btnFetchJson)
+        btnFetchJson = (Button) findViewById(R.id.btnFetchJson);
         btnFetchJson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(JSONObject geoJson) {
 
             jsonOutput.setText(geoJson.toString());
+
+            //GeoJsonLayer layer = new GeoJsonLayer(getMap(), geoJsonData);// Kristian is playing with this
 
         }
 
