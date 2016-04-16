@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,13 +32,16 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+    /*
     private TextView jsonOutput;
     private Button btnFetchJson;
+    */
     private JSONObject geoJson;
     private GoogleMap globalGoogleMap;
     private SupportMapFragment supportMapFragment;
+
 
 
 
@@ -46,12 +50,18 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        jsonOutput = (TextView) findViewById(R.id.txtJsonOut);
+        //getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        //setSupportActionBar(myToolbar);
+
+
+
         supportMapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap));
         supportMapFragment.getMapAsync(this);
 
 
         /*
+        jsonOutput = (TextView) findViewById(R.id.txtJsonOut);
         btnFetchJson = (Button) findViewById(R.id.btnFetchJson);
         btnFetchJson.setOnClickListener(new View.OnClickListener() {
             @Override
