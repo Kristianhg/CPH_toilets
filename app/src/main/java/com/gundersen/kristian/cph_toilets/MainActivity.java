@@ -6,14 +6,14 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 
+import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -22,7 +22,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.geojson.GeoJsonLayer;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -31,6 +30,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.logging.Logger;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -73,6 +73,32 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         initJsonAsync();
     }
+
+    //SETTING UP THE MENU
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.info:
+                runInfo();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void runInfo() {
+        Logger.getAnonymousLogger().info("--> runinfo()");
+        Intent intent = new Intent(this,AppInfo.class);
+        startActivity(intent);
+    }
+
 
     public void initJsonAsync(){
 
