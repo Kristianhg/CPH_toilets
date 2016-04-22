@@ -30,6 +30,7 @@ import java.util.logging.Logger;
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap uiGoogleMap;
+    private JSONObject savedJson;
 
     // SET UP REFERENCES
     @Override
@@ -44,6 +45,20 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         supportMapFragment.getMapAsync(this);
     }
 
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putString("Json",savedJson.toString());
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        String savedString = savedInstanceState.getString("Json");
+        try {
+            savedJson = new JSONObject(savedString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     //SETTING UP THE MENU
     @Override
@@ -74,12 +89,26 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     //CONFIGURING MAP
     public void onMapReady (GoogleMap googleMap) {
+        Logger.getAnonymousLogger().info("MAP READY");
         uiGoogleMap = googleMap;
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         googleMap.getMinZoomLevel();
         ////// NEXT LINE IS A PLACEHOLDER. It should be generated from the user´s position. the last arg is zoom level.
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(55.6815890, 12.5290920), 12.0f));
-        new AddJsonToMapAsync().execute();
+
+
+        Logger.getAnonymousLogger().info("MAP SEEKING JSON");
+        if (savedJson != null) {
+            Logger.getAnonymousLogger().info("JSON FILE ALREADY EXISTS");
+            GeoJsonLayer layer = new GeoJsonLayer(uiGoogleMap, savedJson);
+            layer.addLayerToMap();
+            Logger.getAnonymousLogger().info("MAP GOT EXISTING JSON");
+        }
+        else {
+            Logger.getAnonymousLogger().info("DOWNLOADING JSON");
+            new AddJsonToMapAsync().execute();
+        }
+
     }
 
 
@@ -107,9 +136,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         @Override
         protected void onPostExecute(JSONObject geoJson) {
-
+            savedJson = geoJson;
             GeoJsonLayer layer = new GeoJsonLayer(uiGoogleMap, geoJson);
             layer.addLayerToMap();
+            Logger.getAnonymousLogger().info("MAP GOT DOWNLOADED JSON");
+
 
         }
 
