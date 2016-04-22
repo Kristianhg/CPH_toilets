@@ -18,13 +18,13 @@ public class JsonHandling {
     private JSONObject geoJson;
     private HttpURLConnection urlConnection;
 
-    public JSONObject FetchJson (){
+    public JSONObject FetchJson (String urlString){
 
 
         StringBuilder result = new StringBuilder();
 
         try {
-            URL url = new URL("http://wfs-kbhkort.kk.dk/k101/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=k101:toilet&outputFormat=json&SRSNAME=EPSG:4326");
+            URL url = new URL(urlString);
             urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 
