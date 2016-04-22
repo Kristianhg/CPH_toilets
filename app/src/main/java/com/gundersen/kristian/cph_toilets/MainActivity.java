@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap uiGoogleMap;
     private JSONObject savedJson;
 
-    // SET UP REFERENCES
+    /// SET UP REFERENCES
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
