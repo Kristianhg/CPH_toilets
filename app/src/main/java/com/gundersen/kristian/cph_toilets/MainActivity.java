@@ -30,8 +30,6 @@ import java.util.logging.Logger;
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap uiGoogleMap;
-    private static final String staticURLString = (String)"http://wfs-kbhkort.kk.dk/k101/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=k101:toilet&outputFormat=json&SRSNAME=EPSG:4326";
-
 
     // SET UP REFERENCES
     @Override
@@ -81,12 +79,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         googleMap.getMinZoomLevel();
         ////// NEXT LINE IS A PLACEHOLDER. It should be generated from the user´s position. the last arg is zoom level.
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(55.6815890, 12.5290920), 12.0f));
-        new AddJsonToMapAsync().execute(staticURLString);
+        new AddJsonToMapAsync().execute();
     }
 
 
 // ASYNC TASK TO FETCH JSON AND PUT IT ON THE MAP
-    public class AddJsonToMapAsync extends AsyncTask<String, String, JSONObject> {
+    public class AddJsonToMapAsync extends AsyncTask<Void, String, JSONObject> {
 
         /*// PROGRESS SPINNER, IGNORE UNTIL IMPORTANT STUFF WORKS
         private ProgressDialog spinner;
@@ -102,9 +100,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         //*/
 
         @Override
-        protected JSONObject doInBackground(String... urlStrings) {
+        protected JSONObject doInBackground(Void... Args) {
 
-            return new JsonHandling().FetchJson(urlStrings[0]);
+            return new JsonHandling().FetchJson();
         }
 
         @Override
