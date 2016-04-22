@@ -16,24 +16,6 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <!--
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Json should appear here"
-        android:layout_below="@+id/btnFetchJson"
-        android:layout_alignParentStart="true"
-        android:id="@+id/txtJsonOut" />
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fetch Json"
-        android:id="@+id/btnFetchJson"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-        -->
 
     <fragment
         android:layout_width="fill_parent"
