@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Copenhagen Toilets</string>
     <string name="info">Info</string>
-    <string name="info_title">Let it be, go pee</string>
-    <string name="info_body">When you find yourself in times of trouble, and mother mary doesn´t come to you.
-        We´ll show you paths of wisdom, so you can go pee. Let it be.
-        And in the hours of darnkess, with bushes standing right in front of you. let it be, let it be. All the people of that street agree.
-        Grab your phone and find a toilet. Go there and pee. Let it be.   </string>
+    <string name="info_title">License info</string>
+    <string name="info_label">License info</string>
+    <string name="info_body">[Insert google maps API license info here]   </string>
+    <string name="permission_required_toast">1 See toilets nearby?</string>
+    <string name="permission_rationale_location">2 See toilets nearby?</string>
+    <string name="location_permission_denied">3 Oh, current location unavailable</string>
 </resources>
