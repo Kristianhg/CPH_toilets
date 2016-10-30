@@ -228,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements GoogleMap.OnMyLoc
         else {
             new AddJsonToMapAsync().execute();
         }
-        Toast.makeText(this, "Select toilet for navigation", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.onboarding, Toast.LENGTH_LONG).show();
     }
 
     /**

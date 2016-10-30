@@ -1,11 +1,16 @@
 <resources>
-    <string name="app_name">Copenhagen Toilets</string>
+    <string name="app_name">CPH Toilets</string>
     <string name="info">Info</string>
-    <string name="info_title">License info</string>
-    <string name="info_label">License info</string>
-    <string name="info_body">[Insert google maps API license info here]   </string>
+    <string name="info_title">Tutorial</string>
+    <string name="info_label">Tutorial</string>
+    <string name="info_body1">Make sure you are in Copenhagen. Ask someone if unsure.</string>
+    <string name="info_body2">Find the red markers on the map, these represent toilets.</string>
+    <string name="info_body3">Tap on one.</string>
+    <string name="info_body4">Tap on the navigation button to navigate to that toilet.</string>
+    <string name="info_body5">Go there.Enjoy.</string>
     <string name="permission_required_toast">1 See toilets nearby?</string>
     <string name="permission_rationale_location">2 See toilets nearby?</string>
     <string name="location_permission_denied">3 Oh, current location unavailable</string>
     <string name="network_not_available">No internet</string>
+    <string name="onboarding">Click a toilet to navigate there</string>
 </resources>
